@@ -1,3 +1,8 @@
+# Alexandre Lima
+# 03/08/2025
+#
+# Imprime uma citação de uma pessoa famosa
+
 autor_nome = "Grace"
 autor_sobrenome = "Hopper"
 citacao = "Um ser humano deve transformar informação em inteligência ou conhecimento. Tendemos a esquecer que nenhum computador jamais fará uma nova pergunta"
