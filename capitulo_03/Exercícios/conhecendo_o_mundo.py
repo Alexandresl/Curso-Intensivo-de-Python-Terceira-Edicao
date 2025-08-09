@@ -1,0 +1,15 @@
+destinos = ['Nova Iorque', 'Rio de Janeiro', 'Inglaterra', 'Japão', 'Nova Orleans']
+
+print(destinos)
+print(sorted(destinos))
+print(destinos)
+print(sorted(destinos, reverse=True))
+print(destinos)
+destinos.reverse()
+print(destinos)
+destinos.reverse()
+print(destinos)
+destinos.sort()
+print(destinos)
+destinos.sort(reverse=True)
+print(destinos)

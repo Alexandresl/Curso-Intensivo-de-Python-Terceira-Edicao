@@ -40,6 +40,26 @@ Repositório do livro:
     - [Zen do Python](#zen-do-python)
     - [Faça você mesmo](#faça-você-mesmo-5)
   - [Capítulo 3 - Introdução às listas](#capítulo-3---introdução-às-listas)
+    - [O que é uma lista?](#o-que-é-uma-lista)
+    - [Acessando os elementos em uma lista](#acessando-os-elementos-em-uma-lista)
+    - [As posições do índice começam em 0, não em 1](#as-posições-do-índice-começam-em-0-não-em-1)
+    - [Usando valores individuais de uma lista](#usando-valores-individuais-de-uma-lista)
+    - [Faça você mesmo](#faça-você-mesmo-6)
+    - [Modificando elementos em uma lista](#modificando-elementos-em-uma-lista)
+    - [Anexando elementos ao final de uma lista](#anexando-elementos-ao-final-de-uma-lista)
+    - [Inserindo elementos em uma lista](#inserindo-elementos-em-uma-lista)
+    - [Removendo elementos usando na instrução del](#removendo-elementos-usando-na-instrução-del)
+    - [Removendo um elemento com o método pop()](#removendo-um-elemento-com-o-método-pop)
+    - [Removendo elementos de qualquer posição em uma lista](#removendo-elementos-de-qualquer-posição-em-uma-lista)
+    - [Removendo um elemento por valor](#removendo-um-elemento-por-valor)
+    - [Faça você mesmo](#faça-você-mesmo-7)
+    - [Ordenando uma lista permanentemente com o método `sort()`](#ordenando-uma-lista-permanentemente-com-o-método-sort)
+    - [Ordenando uma lista temporariamente com a função `sorted()`](#ordenando-uma-lista-temporariamente-com-a-função-sorted)
+    - [Exibindo uma lista em ordem inversa](#exibindo-uma-lista-em-ordem-inversa)
+    - [Identificando o tamanho da lista](#identificando-o-tamanho-da-lista)
+    - [Faça você mesmo](#faça-você-mesmo-8)
+    - [Evitando erros de índice ao trabalhar com listas](#evitando-erros-de-índice-ao-trabalhar-com-listas)
+    - [Faça você mesmo](#faça-você-mesmo-9)
 
 ## Parte 1 - Noções Básicas
 
@@ -731,3 +751,662 @@ Namespaces são uma grande ideia -- vamos ter mais dessas!
 ___
 
 ## Capítulo 3 - Introdução às listas
+
+### O que é uma lista?
+
+> ___
+> Uma lista é uma coleção de itens em uma ordem específica. Os itens de uma lista não precisam estar relacionados de nenhuma forma especial.
+>
+> Via de regra, como as listas irão conter mais de um elemento, é uma boa ideia nomeá-las no plural.
+>
+> No Python, *colchetes* (`[]`) designam uma lista, e os elementos individualmente são separados por vírgulas.
+>
+> [Arquivo: bicycles.py](./capitulo_03/bicyles.py)
+>
+> ```python
+> bicycles = ['trek', 'cannondale', 'redline', 'specialized']
+> print(bicycles)
+> ```
+>
+> **Saída:**
+>
+> ```bash
+> ['trek', 'cannondale', 'redline', 'specialized']
+> ```
+>
+> ___
+
+&nbsp;
+
+### Acessando os elementos em uma lista
+
+> ___
+> Listas são coleções ordenadas, ou seja, podemos acessar qualquer elemento em uma lista informando a posição ou *índice* do item desejado ao Python. Para acessar um elemento em uma lista, escreva o nome dela seguido do índice do item entre colchetes.
+>
+> [Arquivo: bicycles_2.py](./capitulo_03/bicycles_2.py)
+>
+> ```python
+> bicycles = ['trek', 'cannondale', 'redline', 'specialized']
+> print(bicycles[0])
+> ```
+>
+> **Saída:**
+>
+> ```bash
+> trek
+> ```
+>
+> ___
+
+&nbsp;
+
+> ___
+> Podemos utilizar os métodos string em qualquer elemento da lista. Por exemplo, podemos formatar o elemento 'trek' para parecer mais apresentável usando o método `title()`.
+>
+> [Arquivo: bicycles_3.py](./capitulo_03/bicycles_3.py)
+>
+> ```python
+> bicycles = ['trek', 'cannondale', 'redline', 'specialized']
+> print(bicycles[0].title())
+> ```
+>
+> **Saída:**
+>
+> ```bash
+> Trek
+> ```
+>
+> ___
+
+&nbsp;
+
+### As posições do índice começam em 0, não em 1
+
+> ___
+> O Python considera que o primeiro item de uma lista está na posição 0. Assim, podemos acessar qualquer elemento de uma lista subtraindo um da sua posição na lista.
+>
+> O código a seguir consulta as bicicletas nos índices 1 e 3.
+>
+> [Arquivo: bicycles_4.py](./capitulo_03/bicycles_4.py)
+>
+> ```python
+> bicycles = ['trek', 'cannondale', 'redline', 'specialized']
+> print(bicycles[1])
+> print(bicycles[3])
+> ```
+>
+> **Saída:**
+>
+> ```bash
+> cannondale
+> specialized
+> ```
+>
+> ___
+
+&nbsp;
+
+> ___
+> O Python tem uma sintaxe singular para acessar o último elemento de uma lista. Se pedirmos o elemento no índice -1, sempre retorno o último elemento da lista.
+>
+> [Arquivo: bicycles_5.py](./capitulo_03/bicycles_5.py)
+>
+> ```python
+> bicycles = ['trek', 'cannondale', 'redline', 'specialized']
+> print(bicycles[-1])
+> ```
+>
+> **Saída:**
+>
+> ```bash
+> specialized
+> ```
+>
+> Essa sintaxe é prática, pois muitas vezes queremos acessar o último item de uma lista sem saber exatamente qual é o tamanho dela. Essa convenção se aplica também aos outros elementos. O índice -2 retorna o segundo elemento do final da lista, etc.
+> ___
+
+&nbsp;
+
+### Usando valores individuais de uma lista
+
+> ___
+> Você pode utilizar *f-string* para criar uma mensagem com base em um valor de uma lista.
+>
+> Vamos tentar acessar a primeira bicicleta da lista e compor uma mensagem utilizando este valor:
+>
+> ```python
+> bicycles = ['trek', 'cannondale', 'redline', 'specialized']
+> message = f"My first bicycle was a {bicycles[0].title()}."
+> print(message)
+> ```
+>
+> **Saída:**
+>
+> ```bash
+> My first bicycle was a Trek.
+> ```
+>
+> ___
+
+&nbsp;
+
+### Faça você mesmo
+
+Tente criar os seguintes programas curso a fim de adquirir um pouco de experiência pessoal com as listas do Python. Talvez você queira criar uma nova pasta para os exercícios de cada capítulo, assim pode mantê-los organizados.
+
+**3.1 Nomes:** Armazene o nome de alguns de seus amigos em uma lista chamada *names*. Exiba o nome de cada pessoa acessando cada elemento da lista, um de cada vez.
+
+[Solução](./capitulo_03/Exercícios/nomes.py)
+
+___
+
+**3.2 Cumprimentos:** Comece com a lista usada no Exercício 3.1, mas em vez de apenas exibir o nome de cada pessoa, exiba também uma mensagem para elas. O texto de cada mensagem deve ser o mesmo, porém, cada mensagem deve ser personalizada com o nome de cada pessoa.
+
+[Solução](./capitulo_03/Exercícios/cumprimentos.py)
+
+___
+
+**3.3 Sua própria lista:** Pense em seu meio de transporte favorito, como uma moto ou um carro, e crie uma lista que armazene diversos exemplos. Use sua lista para exibir uma série de declarações sobre esses itens, como "Gostaria de ter uma moto da Honda".
+
+[Solução](./capitulo_03/Exercícios/sua_propria_lista.py)
+
+___
+
+### Modificando elementos em uma lista
+
+> ___
+> A sintaxe para modificar um elemento se assemelha à sintaxe para acessar um elemento em uma lista. Para alterar um elemento, use o nome da lista seguido pelo índice do elemento que queira alterar e forneça o valor novo que quer que esse elemento tenha.
+>
+> [motorcycles.py](./capitulo_03/motorcycles.py)
+>
+> ```python
+> motorcycles = ['Honda', 'Yamaha', 'Suzuki']
+> print(motorcycles)
+> 
+> motorcycles[0] = 'Ducati'
+> print(motorcycles)
+> ```
+>
+> **Saída:**
+>
+> ```bash
+> ['Honda', 'Yamaha', 'Suzuki']
+> ['Ducati', 'Yamaha', 'Suzuki']
+> ```
+>
+> ___
+
+&nbsp;
+
+### Anexando elementos ao final de uma lista
+
+> ___
+> A forma mais simples de adicionar um elemento novo a uma lista é *anexar* o elemento nela. Ao anexar um elemento a uma lista, esse elemento novo é adicionado ao final dela. Usando a mesma lista do exemplo anterior, adicionaremos o elemento novo '*Ducati*' ao final dela
+>
+> [motorcycles_2.py](./capitulo_03/motorcycles_2.py)
+>
+> ```python
+> motorcycles = ['Honda', 'Yamaha', 'Suzuki']
+> print(motorcycles)
+> 
+> motorcycles.append('Ducati')
+> print(motorcycles)
+> ```
+>
+> **Saída:**
+>
+> ```bash
+> ['Honda', 'Yamaha', 'Suzuki']
+> ['Honda', 'Yamaha', 'Suzuki', 'Ducati']
+> ```
+>
+> ___
+
+&nbsp;
+
+> ___
+> Com o método `append()` também é possível criar listas dinamicamente. Por exemplo, é possível começar com uma lista vazia e depois adicionar elementos nela usando uma série de métodos `append()`. Em uma lista vazia adicionaremos os elementos 'Honda', 'Yamaha' e 'Suzuki' nela.
+>
+> [motorcycles_3.py](./capitulo_03/motorcycles_3.py)
+>
+> ```python
+> motorcycles = []
+> 
+> motorcycles.append('Honda')
+> motorcycles.append('Yamaha')
+> motorcycles.append('Suzuki')
+> 
+> print(motorcycles)
+> ```
+>
+> **Saída:**
+>
+> ```bash
+> ['Honda', 'Yamaha', 'Suzuki']
+> ```
+>
+> ___
+
+&nbsp;
+
+### Inserindo elementos em uma lista
+
+> ___
+> Podemos adicionar um elemento novo em qualquer posição em sua lista usando o método `insert()`. Faremos isso especificando o índice do elemento novo e o valor do elemento novo.
+>
+> [motorcycles_4.py](./capitulo_03/motorcycles_4.py)
+>
+> ```python
+> motorcycles = ['Honda', 'Yamaha', 'Suzuki']
+> motorcycles.insert(0, 'Ducati')
+> 
+> print(motorcycles)
+> ```
+>
+> **Saída:**
+>
+> ```bash
+> ['Ducati', 'Honda', 'Yamaha', 'Suzuki']
+> ```
+>
+> ___
+
+&nbsp;
+
+### Removendo elementos usando na instrução del
+
+> ___
+> Caso saiba a posição do elemento que deseja remover de uma lista, você pode usar a instrução `del`.
+>
+> [motorcycles_5.py](./capitulo_03/motorcycles_5.py)
+>
+> ```python
+> motorcycles = ['Honda', 'Yamaha', 'Suzuki']
+> print(motorcycles)
+> 
+> del motorcycles[0]
+> print(motorcycles)
+> ```
+>
+> **Saída:**
+>
+> ```bash
+> ['Honda', 'Yamaha', 'Suzuki']
+> ['Yamaha', 'Suzuki']
+> ```
+>
+> **Obs.**: Não podemos mais acessar o valor que foi removido da lista após usarmos a instrução `del`.
+> ___
+
+&nbsp;
+
+### Removendo um elemento com o método pop()
+
+> ___
+> O método `pop()` remove o último elemento de uma lista, mas possibilita que você trabalhe com esse elemento após removê-lo. O termo *pop* se origina da ideia de considerar uma lista como uma pilha de itens, removendo um item do topo da pilha. Analogicamente, o topo de uma pilha corresponde ao final de uma lista.
+>
+> [motorcycles_6.py](./capitulo_03/motorcycles_6.py)
+>
+> ```python
+> motorcycles = ['Honda', 'Yamaha', 'Suzuki']
+> print(motorcycles)
+> 
+> popped_motorcycles = motorcycles.pop()
+> print(motorcycles)
+> print(popped_motorcycles)
+> ```
+>
+> **Saída:**
+>
+> ```bash
+> ['Honda', 'Yamaha', 'Suzuki']
+> ['Honda', 'Yamaha']
+> Suzuki
+> ```
+>
+> ___
+
+&nbsp;
+
+### Removendo elementos de qualquer posição em uma lista
+
+> ___
+> É possível usar o `pop()`para remover um elemento de qualquer posição em uma lista, incluindo o índice do elemento que queira remover entre parênteses.
+>
+> [motorcycles_7.py](./capitulo_03/motorcycles_7.py)
+>
+> ```python
+> motorcycles = ['Honda', 'Yamaha', 'Suzuki']
+> 
+> first_owned = motorcycles.pop(0)
+> print(f"The first motorcycle I owned was a {first_owned.title()}.")
+> ```
+>
+> **Saída:**
+>
+> ```bash
+> The first motorcycle I owned was a Honda.
+> ```
+>
+> ___
+
+&nbsp;
+
+### Removendo um elemento por valor
+
+> ___
+> Em alguns casos não sabemos a posição do valor que queremos remover de uma lista. Se souber apenas o valor do elemento que quer remover, é possível usar o método `remove()`.
+>
+> [motorcycles_8.py](./capitulo_03/motorcycles_8.py)
+>
+> ```python
+> motorcycles = ['Honda', 'Yamaha', 'Suzuki', 'Ducati']
+> print(motorcycles)
+> 
+> motorcycles.remove('Ducati')
+> print(motorcycles)
+> ```
+>
+> **Saída:**
+>
+> ```bash
+> ['Honda', 'Yamaha', 'Suzuki', 'Ducati']
+> ['Honda', 'Yamaha', 'Suzuki']
+> ```
+>
+> ___
+
+&nbsp;
+
+> ___
+> Podemos também utilizar o método `remove()` para trabalhar com um valor que está sendo removido de uma lista. Removeremos o valor 'Ducati' e exibiremos a justificativa para removê-lo da lista:
+>
+> [motorcycles_9.py](./capitulo_03/motorcycles_9.py)
+>
+> ```python
+> motorcycles = ['Honda', 'Yamaha', 'Suzuki', 'Ducati']
+> print(motorcycles)
+> 
+> too_expensive = 'Ducati'
+> motorcycles.remove(too_expensive)
+> print(motorcycles)
+> print(f"\nA {too_expensive.title()} is too expensive for me.")
+> ```
+>
+> **Saída:**
+>
+> ```bash
+> ['Honda', 'Yamaha', 'Suzuki', 'Ducati']
+> ['Honda', 'Yamaha', 'Suzuki']
+> 
+> A Ducati is too expensive for me.
+> ```
+>
+> ___
+> **Obs.:** *O método `remove()` deleta somente a primeira ocorrência do valor especificado. Se existir a possibilidade de o valor aparecer mais de uma vez na lista, é necessário usar um loop a fim de garantir que todas as ocorrências do valor sejam removidas. Aprenderemos como fazer iso no Capítulo 7.*
+> ___
+
+&nbsp;
+
+### Faça você mesmo
+
+Os exercícios seguintes são uma pouco mais complexos do que os do Capítulo 2, mas lhe possibilitam usar as listas de todas as formas descritas.
+
+**3.4 Lista de convidados:** Se pudesse convidar qualquer pessoa, viva ou falecida, para um jantar, quem você convidaria? Crie uma lista que tenha pelo menos três pessoas que gostaria de convidar para um jantar. em seguida, use sua lista a fim de exibir uma mensagem para cada pessoa, convidando-a para o jantar.
+
+[Solução](./capitulo_03/Exercícios/lista_de_convidados.py)
+
+___
+
+**3.5 Mudando a lista de convidados:** Você acabou de ficar sabendo que um dos convidados não conseguirá ir ao jantar, assim precisa enviar um conjunto novo de convites. É necessário convidar outra pessoa.
+
+* Comece com o programa do Exercício 3.4. No final do programa, adicione um `print()`, informando o nome do convidado que não rá ao jantar.
+* Modifique sua lista substituindo o nome do convidado que não pode comparecer pelo nome da pessoa nova que você está convidando.
+* Exiba um segundo conjunto de mensagens de convite, uma para cada pessoa que ainda não consta em sua lista.
+
+[Solução](./capitulo_03/Exercícios/mudando_a_lista_de_convidados.py)
+
+___
+
+**3.6 Mais convidados:** Você acabou de encontrar uma mesa maior de jantar, agora há mais espaço disponível. Convide mais três pessoas para o jantar.
+
+* Comece com o programa do Exercício 3.4 ou 3.5. No final do programa, adicione um `print()`, informando às pessoas que encontrou uma mesa maior.
+* Use um `insert()` para adicionar um convidado novo ao início de sua lista.
+* Use um `insert()` para adicionar um convidado novo no meio da sua lista.
+* Use um `append()` para adicionar um convidado novo no final de sua lista.
+* Exiba um conjunto novo de mensagens de convite, um para cada pessoa em sua lista.
+
+[Solução](./capitulo_03/Exercícios/mais_convidados.py)
+
+___
+
+**3.7 Reduzindo a lista de convidados** Você acabou de descobrir que sua mesa nova de jantar não chegará a tempo e agora tem espaço somente para dois convidados.
+
+* Comece com o programa do exercício 3.6. Adiciona uma linha nova que exiba uma mensagem que você pode convidar apenas duas pessoas para o jantar.
+* Use o `pop()` para remover convidados de sua lista, um de cada vez, até que restem somente dois nomes nela. Sempre que remover um nome de sua lista, exiba uma mensagem para essa pessoa informando que lamenta por não poder convidar para o jantar.
+* Exiba uma mensagem para cada uma das duas pessoas que ainda estão na sua lista, informando que ainda estão convidadas.
+* Use o `del` para remover os dois últimos nomes de sua lista, para que ela fique vazia. Exiba sua lista para ter certeza de que você realmente tem uma lista vazia no final do seu programa.
+
+[Solução](./capitulo_03/Exercícios/reduzindo_a_lista_de_convidados.py)
+
+### Ordenando uma lista permanentemente com o método `sort()`
+
+> ___
+> O método `sort()`do Python facilita relativamente a ordenação de uma lista. Imagine que temos uma lista de carros e queremos mudar sua ordem para armazena-los em ordem alfabética. Simplificando as coisas: vamos supor que todos os valores da lista estejam em letras minúsculas.
+>
+> [cars.py](./capitulo_03/Exercícios/cars.py)
+>
+> ```python
+> cars = ['bmw', 'audi', 'toyota', 'subaru']
+> cars.sort()
+> print(cars)
+> ```
+>
+> **Saída:**
+>
+> ```bash
+> ['audi', 'bmw', 'subaru', 'toyota']
+> ```
+>
+> O método `sort()` altera **permanentemente** a ordem da lista. Agora, os carros estão em ordem alfabética, e nunca poderemos reverter para a ordem original
+>
+> ___
+
+&nbsp;
+
+___
+
+> ___
+> Podemos também ordenar essa lista em ordem alfabética reversa passando o argumento `reverse=True` para o método `sort()`. O exemplo a seguir ordena a lista de carros em ordem alfabética reversa:
+>
+> [cars_2.py](./capitulo_03/Exercícios/cars_2.py)
+>
+> ```python
+> cars = ['bmw', 'audi', 'toyota', 'subaru']
+> cars.sort(reverse=True)
+> print(cars)
+> ```
+>
+> **Saída:**
+>
+> ```bash
+> ['toyota', 'subaru', 'bmw', 'audi']
+> ```
+>
+> ___
+
+&nbsp;
+
+### Ordenando uma lista temporariamente com a função `sorted()`
+
+> ___
+> A fim de conservar a ordem original de uma lista, mas apresentá-la em ordem ordenada, podemos utilizar a função `sorted()`. A função `sorted()` possibilita exibir sua lista em uma ordem específica, porém, não afeta a ordem original da lista.
+>
+> [cars_3.py](./capitulo_03/Exercícios/cars_3.py)
+>
+> ```python
+> cars = ['bmw', 'audi', 'toyota', 'subaru']
+> 
+> print('Here is the original list:')
+> print(cars)
+> 
+> print('\nHere is the sorted list:')
+> print(sorted(cars))
+> 
+> print('\nHere is the original list again:')
+> print(cars)
+> ```
+>
+> **Saída:**
+>
+> ```bash
+> Here is the original list:
+> ['bmw', 'audi', 'toyota', 'subaru']
+> 
+> Here is the sorted list:
+> ['audi', 'bmw', 'subaru', 'toyota']
+> 
+> Here is the original list again:
+> ['bmw', 'audi', 'toyota', 'subaru']
+> ```
+>
+> A função `sorted()` também pode aceitar um argumento `reverse=True` caso queira exibir uma lista em ordem alfabética reversa.
+>
+> ___
+
+&nbsp;
+
+> [!note]
+> Ordenar uma lista em ordem alfabética é um pouco mais complicado quando todos os valores não estão em letras minúsculas. Ao definir uma sequência de ordenação, temos diversas formas de interpretar letras maiúsculas. No entanto, especificar a ordem exata pode ser mais complexo do que queremos lidar neste momento. Apesar disso, a maioria das abordagens de ordenação terá como base o que você aprendeu nesta seção.
+
+### Exibindo uma lista em ordem inversa
+
+> ___
+> Para reverter a ordem original de uma lista, podemos utilizar o método `reverse()`. Originalmente, se armazenamos a lista de carros na ordem cronológica de compra, poderíamos facilmente reordenar a lista em ordem cronológica inversa.
+>
+> [cars_4.py](./capitulo_03/Exercícios/cars_4.py)
+>
+> ```python
+> cars = ['bmw', 'audi', 'toyota', 'subaru']
+> print(cars)
+> 
+> cars.reverse()
+> print(cars)
+> ```
+>
+> **Saída:**
+>
+> ```bash
+> ['bmw', 'audi', 'toyota', 'subaru']
+> ['subaru', 'toyota', 'audi', 'bmw']
+> ```
+>
+> ___
+
+&nbsp;
+
+### Identificando o tamanho da lista
+
+> ___
+> É possível encontrar rapidamente o tamanho de uma lista usando a função `len()`. Neste exemplo, a lista tem quatro elementos, logo seu tamanho é 4.
+>
+> [cars_5.py](./capitulo_03/Exercícios/cars_5.py)
+>
+> ```python
+> cars = ['bmw', 'audi', 'toyota', 'subaru']
+> print(len(cars))
+> ```
+>
+> **Saída:**
+>
+> ```bash
+> 4
+> ```
+>
+> ___
+
+&nbsp;
+
+> [!Note]
+> O Python calcula os itens em uma lista começando com um. Logo, você não deve se deparar com nenhum erro ao definir o tamanho de uma lista.
+
+### Faça você mesmo
+
+**3.8 Conhecendo o mundo:** Pense em pelo menos cinco lugares do mundo que você gostaria de conhecer.
+
+* Armazene esses locais em uma lista. Verifique se ela não está em ordem alfabética.
+* Exiba sua lista na ordem original. Não se preocupe em exibir a lista ordenadamente; basta exibi-la como uma lista crua do Python.
+* Use `sorted()` para exibir sua lista em ordem alfabética, sem alterar a lista original.
+* Mostre que sua lista ainda está na ordem original exibindo-a.
+* Use o `sorted()` para exibir sua lista em ordem alfabética reversa, sem alterar a ordem original dela.
+* Demonstre que sua lista ainda está na ordem original exibindo-a mais uma vez.
+* Use o `reverse()` para alterar a ordem de sua lista. Exiba essa lista para mostrar que sua ordem foi alterada.
+* Use o `reverse()` para alterar a ordem de sua lista novamente. Exiba-a a fim de mostrar que voltou à ordem original.
+* Use a `sort()` para alterar sua lista para que ela seja armazenada em ordem alfabética. Exiba a lista para mostrar que sua ordem foi alterada.
+* Use a `sort()` para alterar sua lista, de modo que ela seja armazenada em ordem alfabética inversa. Exiba a lista para mostrar que sua ordem foi alterada.
+
+[Solução](./capitulo_03/Exercícios/conhecendo_o_mundo.py)
+___
+
+**3.9 Convidados para o jantar:** Recorra a um dos programas dos exercícios 3.4 a 3.7, e use `len()` para exibir uma mensagem indicando o número de pessoas que você está convidando para o jantar.
+
+[Solução](./capitulo_03/Exercícios/convidados_para_o_jantar.py)
+
+___
+
+**3.10 Funções** Pense em coisas que você conseguiria armazenar em uma lista. Por exemplo, você pode criar uma lista de montanhas, rios, países, cidades, idiomas, ou qualquer outra coisa que quiser. Crie um programa com uma lista contendo esses itens e, em seguida, use cada função apresentada neste capítulo, pelo menos, uma vez.
+
+> [!Note]
+> *Resumo das funções:*
+> 
+> * `lista[índice]` - Não exatamente uma função mais serve para acessarmos um item da lista;
+> * `lista[índice] = valor` - usado para modificar um elemento da lista;
+> * `lista.append('valor')` - adiciona um novo elemento ao final da lista. serve também para criarmos uma lista dinamicamente, caso tenhamos uma lista vazia;
+> * `lista.insert(posição, valor)` - insere um elemento na lista em uma posição específica. O elemento que ocupa a posição e os seguintes são deslocados para a "direita";
+> * `del lista[posição]` - remove um elemento da lista. Utilizado quando sabemos o seu índice (posição);
+> * `elemento_excluído = lista.pop(índice)` - remove um elemento da lista retornando o seu valor. Seu comportamento padrão, quando não informado o índice é de remover o último elemento;
+> * `lista.remove(valor)` - remove um elemento por seu valor;
+> * `lista.sort()` - ordena a lista por ordem alfabética. pode ser usado o `reverse=True` para ordem alfabética reversa. **Altera permanentemente a lista**;
+> * `sorted(cars)` - ordena a lista por ordem alfabética. pode ser usado o `reverse=True` para ordem alfabética reversa. **conserva a lista original**;
+> * `lista.reverse()` - reverte a ordem original dos elementos de uma lista. **Altera permanentemente a lista**;
+> * `len(lista)` - Retorna o tamanha da lista
+
+[Solução](./capitulo_03/Exercícios/funcoes.py)
+
+### Evitando erros de índice ao trabalhar com listas
+
+> ___
+> Quando trabalhamos com listas pela primeira vez, podemos cometer um tipo de erro comum. Digamos que você tenha uma lista com três elementos e tente acessar um quarto item:
+>
+> [motorcycles_10.py](./capitulo_03/motorcycles_10.py)
+>
+> ```python
+> motorcycles = ['Honda', 'Yamaha', 'Suzuki']
+> print(motorcycles[3])
+> ```
+>
+> Esse exemplo gera um erro de *índice*
+>
+> **Saída:**
+>
+> ```bash
+> Traceback (most recent call last):
+>   File "f:\Curso-Intensivo-de-Python-Terceira-Edicao\capitulo_03\motorcycles_10.py", line 2, in <module>
+>     print(motorcycles[3])
+>           ~~~~~~~~~~~^^^
+> IndexError: list index out of range
+> ```
+>
+> O Python tenta acessar o elemento no índice 3. Mas quando pesquisa na lista, nenhum elemento de *motorcycles* tem índice 3. Devido à natureza **off-by-one** da indexação em listas, temos aqui um típico erro. As pessoas costumam achar que o terceiro elemento é o elemento de número 3, pois começam a contar a partir de 1. Só que em Python o terceiro elemento é o número 2, porque a indexação começa a partir de 0.
+>
+> Caso um erro de índice aconteça em seu programa, tente ajustar o índice que voc|ê está querendo acessar em uym elemento. ?Depois, execute o programa mais uma vez para ver se os resultados estão corretos.
+>
+> **Lembre-se:** sempre que quiser acessar o último elemento de uma lista, use o índice *-1*. Funcionará mesmo que sua lista tenha mudado de tamanho. **O único momento que essa abordagem causará erro é quando tentarmos acessar o último elemento de uma lista vazia**
+>
+> ___
+
+### Faça você mesmo
+
+**3.11 Erro intencional:** Se você ainda não recebeu um erro de índice em um de seus programas, tente gerar um. Mude um índice em um de seus programas para gerar um erro de índice. Faça questão de corrigir o erro antes de fechar o programa.
+
+[Solução](./capitulo_03/motorcycles_10.py)
